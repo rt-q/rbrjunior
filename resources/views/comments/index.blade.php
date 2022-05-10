@@ -14,7 +14,30 @@
                         </div>
                     @endif
 
-                    Comment preview placeholder.
+                    <table class="table">
+                        <thead class="thead-dark">
+                          <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">ID</th>
+                            <th scope="col">Content</th>
+                            <th scope="col">Author</th>
+                            <th scope="col">Date</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($comments as $comment)
+                              <tr>
+                                <th scope="row">{{ $comment->id }}</th>
+                                <td>{{ $comment->post_id }}</td>
+                                <td>{{ $comment->content }}</td>
+                                <td>{{ $comment->author }}</td>
+                                <td>{{ $comment->created_at->format('d/m/Y') }}</td>
+                              </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+
+
                 </div>
             </div>
         </div>
