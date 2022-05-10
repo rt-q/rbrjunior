@@ -11,6 +11,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\V1\PostResource;
 use App\Http\Resources\V1\PostCollection;
 use App\Filters\V1\PostsFilter;
+use App\Http\Requests\V1\StoreApiRequest;
 
 class PostController extends Controller
 {
@@ -22,36 +23,24 @@ class PostController extends Controller
     public function index(Request $request)
     {
         $filter = new PostsFilter();
-        $queryItems = $filter->transform($request);
+        $filterItems = $filter->transform($request);
 
-        if (count($queryItems) == 0) {
-            return new PostCollection(Post::paginate());
-        } else {
-            $posts = Post::where($queryItems)->paginate();
+        $includeComments = $request->query('includeComments');
+        
+        $posts = Post::where($filterItems);
 
-            return new PostCollection($posts->appends($request->query()));
+        if ($includeComments) {
+            $posts = $posts->with('comments');
         }
+
+        return new PostCollection($posts->paginate()->appends($request->query()));
+
+        
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function store(StoreApiRequest $request)
     {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StorePostRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StorePostRequest $request)
-    {
-        //
+        return new PostResource(Post::create($request->all()));
     }
 
     /**
@@ -62,6 +51,11 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
+        $includeComments = request()->query('includeComments');
+
+        if ($includeComments) {
+            return new PostResource($post->loadMissing('comments'));
+        }
         return new PostResource($post);
     }
 
@@ -71,18 +65,7 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdatePostRequest  $request
-     * @param  \App\Models\Post  $post
-     * @return \Illuminate\Http\Response
-     */
+    
     public function update(UpdatePostRequest $request, Post $post)
     {
         //

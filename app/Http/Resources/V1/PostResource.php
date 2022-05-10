@@ -20,7 +20,8 @@ class PostResource extends JsonResource
             'content' => $this->content,
             'authorId' => $this->author,
             'createdAt' => $this->created_at->format('d/m/Y'),
-            'updatedAt' => $this->updated_at->format('d/m/Y')
+            'updatedAt' => $this->updated_at->format('d/m/Y'),
+            'comments' => CommentResource::collection($this->whenLoaded('comments')),
         ];
     }
 }
