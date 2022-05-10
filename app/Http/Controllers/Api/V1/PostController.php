@@ -4,13 +4,13 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
+use Illuminate\Http\Request;
 use App\Models\Post;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\V1\PostResource;
 use App\Http\Resources\V1\PostCollection;
-
-
+use App\Filters\V1\PostsFilter;
 
 class PostController extends Controller
 {
@@ -19,9 +19,18 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return new PostCollection(Post::paginate());
+        $filter = new PostsFilter();
+        $queryItems = $filter->transform($request);
+
+        if (count($queryItems) == 0) {
+            return new PostCollection(Post::paginate());
+        } else {
+            $posts = Post::where($queryItems)->paginate();
+
+            return new PostCollection($posts->appends($request->query()));
+        }
     }
 
     /**

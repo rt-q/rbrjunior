@@ -4,12 +4,13 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Requests\StoreCommentRequest;
 use App\Http\Requests\UpdateCommentRequest;
+use Illuminate\Http\Request;
 use App\Models\Comment;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\V1\CommentResource;
 use App\Http\Resources\V1\CommentCollection;
-
+use App\Filters\V1\CommentsFilter;
 
 class CommentController extends Controller
 {
@@ -18,9 +19,18 @@ class CommentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return new CommentCollection(Comment::paginate());
+        $filter = new CommentsFilter();
+        $queryItems = $filter->transform($request);
+
+        if (count($queryItems) == 0) {
+            return new CommentCollection(Comment::paginate());
+        } else {
+            $comments = Comment::where($queryItems)->paginate();
+
+            return new CommentCollection($comments->appends($request->query()));
+        }
     }
 
     /**
