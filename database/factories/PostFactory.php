@@ -13,8 +13,11 @@ class PostFactory extends Factory
      */
     public function definition()
     {
+        // Post (id, title, content, author, timestamp)
         return [
-            //
+            'title' => $this->faker->sentence(),
+            'content' => $this->faker->paragraph(),
+            'author' => $this->faker->randomDigitNot(0)
         ];
     }
 }
