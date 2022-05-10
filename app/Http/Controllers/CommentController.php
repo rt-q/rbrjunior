@@ -6,6 +6,7 @@ use App\Http\Requests\StoreCommentRequest;
 use App\Http\Requests\UpdateCommentRequest;
 use App\Models\Comment;
 
+
 class CommentController extends Controller
 {
     /**
@@ -15,7 +16,7 @@ class CommentController extends Controller
      */
     public function index()
     {
-        $comments = Comment::all();
+        $comments = Comment::paginate(25);
         return view('comments.index', ['comments' => $comments]);
     }
 

@@ -22,7 +22,7 @@ class PostSeeder extends Seeder
             ->create();
 
         User::factory()
-            ->count(10)
+            ->count(50)
             ->create();
     }
 }
