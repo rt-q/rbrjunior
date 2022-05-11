@@ -1,6 +1,6 @@
 <?php
 
-
+use App\Http\Controllers\ApiController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\UserController;
@@ -30,6 +30,10 @@ Route::get('/', function () {
 Route::get('/posts', [PostController::class, 'index'])->name('posts.index')->middleware('auth');;
 Route::get('/comments', [CommentController::class, 'index'])->name('comments.index')->middleware('auth');;
 Route::get('/users', [UserController::class, 'index'])->name('users.index')->middleware('auth');;
+
+Route::get('/api', [ApiController::class, 'index'])->name('api.index')->middleware('auth');
+Route::get('/api/newpost', [ApiController::class, 'newPostIndex'])->name('api.newpost')->middleware('auth');
+Route::post('/api/newpost', [ApiController::class, 'newPost'])->name('api.newpost.store')->middleware('auth');
 
 Auth::routes();
 
