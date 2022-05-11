@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Http\Requests\StoreCommentRequest;
-use App\Http\Requests\UpdateCommentRequest;
 use Illuminate\Http\Request;
 use App\Models\Comment;
 
@@ -11,6 +9,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\V1\CommentResource;
 use App\Http\Resources\V1\CommentCollection;
 use App\Filters\V1\CommentsFilter;
+use App\Http\Requests\V1\StoreCommentRequest;
+use App\Http\Requests\V1\UpdateCommentRequest;
 
 class CommentController extends Controller
 {
@@ -34,16 +34,6 @@ class CommentController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \App\Http\Requests\StoreCommentRequest  $request
@@ -51,7 +41,7 @@ class CommentController extends Controller
      */
     public function store(StoreCommentRequest $request)
     {
-        //
+        return new CommentResource(Comment::create($request->all()));
     }
 
     /**
@@ -65,16 +55,6 @@ class CommentController extends Controller
         return new CommentResource($comment);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Comment  $comment
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Comment $comment)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -85,7 +65,7 @@ class CommentController extends Controller
      */
     public function update(UpdateCommentRequest $request, Comment $comment)
     {
-        //
+        $comment->update($request->all());
     }
 
     /**
@@ -94,8 +74,8 @@ class CommentController extends Controller
      * @param  \App\Models\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Comment $comment)
+    public function destroy($id)
     {
-        //
+        return Comment::destroy($id);
     }
 }

@@ -2,10 +2,9 @@
 
 namespace App\Http\Requests\V1;
 
-
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdatePostRequest extends FormRequest
+class UpdateCommentRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -28,18 +27,15 @@ class UpdatePostRequest extends FormRequest
 
         if ($method == 'PUT') {
             return [
-                'title' => ['required'],
-                'content'=> ['required'],
-                'author' => ['required']
-            ];
-
-
+            'content'=> ['required'],
+            'author'=> ['required']
+        ];
         } else {
             return [
-                'title' => ['sometimes', 'required'],
                 'content'=> ['sometimes', 'required'],
-                'author' => ['sometimes', 'required']
-            ]; 
+                'author'=> ['sometimes', 'required']
+            ];        
         }
-    }
+        
+    } 
 }

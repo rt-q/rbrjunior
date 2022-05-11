@@ -43,6 +43,18 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('/users') }}">Users</a>
                         </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                              <strong>API Actions</strong>
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                              <li><a class="dropdown-item" href="{{ route('api.index') }}">Posts</a></li>
+                              <li><a class="dropdown-item" href="{{ route('api.newpost') }}">Add Post</a></li>
+                              <li><hr class="dropdown-divider"></li>
+                              <li><a class="dropdown-item" href="{{ route('api.comments') }}">Comments</a></li>
+                              <li><a class="dropdown-item" href="{{ route('api.newcomment') }}">Add Comment</a></li>
+                            </ul>
+                          </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

@@ -32,8 +32,14 @@ Route::get('/comments', [CommentController::class, 'index'])->name('comments.ind
 Route::get('/users', [UserController::class, 'index'])->name('users.index')->middleware('auth');;
 
 Route::get('/api', [ApiController::class, 'index'])->name('api.index')->middleware('auth');
+
 Route::get('/api/newpost', [ApiController::class, 'newPostIndex'])->name('api.newpost')->middleware('auth');
 Route::post('/api/newpost', [ApiController::class, 'newPost'])->name('api.newpost.store')->middleware('auth');
+
+Route::get('/api/comments', [ApiController::class, 'indexComments'])->name('api.comments')->middleware('auth');
+Route::get('/api/newcomment', [ApiController::class, 'newCommentIndex'])->name('api.newcomment')->middleware('auth');
+Route::post('/api/newcomment', [ApiController::class, 'newComment'])->name('api.newcomment.store')->middleware('auth');
+
 
 Auth::routes();
 
