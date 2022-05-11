@@ -38,6 +38,13 @@ Route::post('/api/newpost', [ApiController::class, 'newPost'])->name('api.newpos
 
 Route::get('/api/comments', [ApiController::class, 'indexComments'])->name('api.comments')->middleware('auth');
 Route::get('/api/newcomment', [ApiController::class, 'newCommentIndex'])->name('api.newcomment')->middleware('auth');
+
+Route::get('/api/deletecomment', [ApiController::class, 'deleteCommentIndex'])->name('api.deletecomment')->middleware('auth');
+Route::post('/api/deletecomment', [ApiController::class, 'deleteComment'])->name('api.deletecomment.rmv')->middleware('auth');
+
+Route::get('/api/deletepost', [ApiController::class, 'deletePostIndex'])->name('api.deletepost')->middleware('auth');
+Route::post('/api/deletepost', [ApiController::class, 'deletePost'])->name('api.deletepost.rmv')->middleware('auth');
+
 Route::post('/api/newcomment', [ApiController::class, 'newComment'])->name('api.newcomment.store')->middleware('auth');
 
 

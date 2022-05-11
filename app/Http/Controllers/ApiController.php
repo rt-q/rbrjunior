@@ -31,7 +31,35 @@ class ApiController extends Controller
 
     public function newCommentIndex() {
         return view('api.newcomment');
-}    
+    }    
+
+    public function deleteCommentIndex() {
+        return view('api.deletecomment');
+    }    
+
+    public function deletePostIndex() {
+        return view('api.deletepost');
+    }    
+
+    public function deleteComment(Request $request) {
+        if (isset($request->commentId)) {
+
+            $request = Http::asForm()->delete('http://localhost:8001/api/v1/comments/'.$request->commentId.'');
+
+            return redirect()->route('api.deletecomment');
+        
+        }
+    }
+
+    public function deletePost(Request $request) {
+        if (isset($request->postId)) {
+
+            $request = Http::asForm()->delete('http://localhost:8001/api/v1/posts/'.$request->postId.'');
+            
+            return redirect()->route('api.deletepost');
+        
+        }
+    }
 
     public function newPost(Request $request) {
         if (isset($request->postTitle)) {
