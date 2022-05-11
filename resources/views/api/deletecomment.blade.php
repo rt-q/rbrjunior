@@ -17,7 +17,7 @@
                     <form action="{{ route('api.deletecomment.rmv') }}" method="POST" id="contentForm">
                         {{ csrf_field() }}
                         <div class="form-group">
-                          <input type="text" class="form-control" id="commentId" name="commentId" placeholder="Post ID" required>
+                          <input type="text" class="form-control" id="commentId" name="commentId" placeholder="Comment ID" required>
                         </div>
 
                         <button type="submit" class="btn btn-primary">Submit</button>

@@ -50,9 +50,11 @@
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                               <li><a class="dropdown-item" href="{{ route('api.index') }}">Posts</a></li>
                               <li><a class="dropdown-item" href="{{ route('api.newpost') }}">Add Post</a></li>
+                              <li><a class="dropdown-item" href="{{ route('api.deletepost') }}">Delete Post</a></li>
                               <li><hr class="dropdown-divider"></li>
                               <li><a class="dropdown-item" href="{{ route('api.comments') }}">Comments</a></li>
                               <li><a class="dropdown-item" href="{{ route('api.newcomment') }}">Add Comment</a></li>
+                              <li><a class="dropdown-item" href="{{ route('api.deletecomment') }}">Delete Comment</a></li>
                             </ul>
                           </li>
                     </ul>
