@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Http\Requests\StorePostRequest;
-use App\Http\Requests\UpdatePostRequest;
+
+
 use Illuminate\Http\Request;
 use App\Models\Post;
 
@@ -11,7 +11,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\V1\PostResource;
 use App\Http\Resources\V1\PostCollection;
 use App\Filters\V1\PostsFilter;
-use App\Http\Requests\V1\StoreApiRequest;
+use App\Http\Requests\V1\StorePostRequest;
+use App\Http\Requests\V1\UpdatePostRequest;
 
 class PostController extends Controller
 {
@@ -38,7 +39,7 @@ class PostController extends Controller
         
     }
 
-    public function store(StoreApiRequest $request)
+    public function store(StorePostRequest $request)
     {
         return new PostResource(Post::create($request->all()));
     }
@@ -68,7 +69,7 @@ class PostController extends Controller
     
     public function update(UpdatePostRequest $request, Post $post)
     {
-        //
+        $post->update($request->all());
     }
 
     /**
@@ -77,8 +78,8 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy($id)
     {
-        //
+        return Post::destroy($id);
     }
 }
