@@ -12,7 +12,7 @@ up and running:
 - job: add comment Tak to random post
 
 todo:
-- command: command count crud actions <strong>add timer</strong>
+- command: command count crud actions <s>add timer</s> fix timer.
 - change random values in add comment job
 - fix api ports (8000 + 8001)
 

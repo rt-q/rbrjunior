@@ -2,7 +2,10 @@
 
 namespace App\Console\Commands;
 
+use Carbon\Carbon;
 use Illuminate\Console\Command;
+
+
 
 class crudStats extends Command
 {
@@ -37,9 +40,33 @@ class crudStats extends Command
      */
     public function handle()
     {
+
+        // sorry about this one, i have like 50 minutes left :(
+
         $log = file(storage_path().'/logs/laravel.log');
-        $actions = count(preg_grep("/posts/", $log))/2;
- 
-        $this->getOutput()->writeln("CRUD actions in log: " . $actions);
+        
+        $logStart = Carbon::now();
+        $logEnd = Carbon::now()->subHours(13);
+
+        $counter = 0;
+
+        foreach ($log as $logs) {
+
+            if (preg_match("/\\[(.*?)\\]/", $logs, $match)) {
+                
+                try {
+                    $logTime = Carbon::parse($match[1]);
+                } catch (\Carbon\Exceptions\InvalidFormatException $e) {
+                    continue;
+                }             
+
+                    if ($logTime->between($logStart, $logEnd)) {
+                        $counter++;
+                    }
+            }
+        }
+
+        $this->getOutput()->writeln("CRUD logged in last 13 hours: " . $counter);
+
     }
 }
