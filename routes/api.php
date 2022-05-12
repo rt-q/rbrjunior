@@ -20,6 +20,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers\Api\V1'], function() {
-    Route::apiResource('posts', PostController::class);
-    Route::apiResource('comments', CommentController::class);
+    Route::apiResource('posts', PostController::class)->middleware(\Spatie\HttpLogger\Middlewares\HttpLogger::class);;
+    Route::apiResource('comments', CommentController::class)->middleware(\Spatie\HttpLogger\Middlewares\HttpLogger::class);;
 });
