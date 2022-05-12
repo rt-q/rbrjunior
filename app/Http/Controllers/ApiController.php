@@ -33,6 +33,10 @@ class ApiController extends Controller
         return view('api.newcomment');
     }    
 
+    public function documentation() {
+        return view('api.documentation');
+    }    
+
     public function deleteCommentIndex() {
         return view('api.deletecomment');
     }    

@@ -55,6 +55,8 @@
                               <li><a class="dropdown-item" href="{{ route('api.comments') }}">Comments</a></li>
                               <li><a class="dropdown-item" href="{{ route('api.newcomment') }}">Add Comment</a></li>
                               <li><a class="dropdown-item" href="{{ route('api.deletecomment') }}">Delete Comment</a></li>
+                              <li><hr class="dropdown-divider"></li>
+                              <li><a class="dropdown-item" href="{{ route('api.documentation') }}">Documentation</a></li>
                             </ul>
                           </li>
                     </ul>
