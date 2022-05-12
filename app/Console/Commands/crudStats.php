@@ -46,7 +46,7 @@ class crudStats extends Command
         $log = file(storage_path().'/logs/laravel.log');
         
         $logStart = Carbon::now();
-        $logEnd = Carbon::now()->subHours(13);
+        $logEnd = Carbon::now()->subMinutes(813);
 
         $counter = 0;
 

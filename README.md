@@ -9,13 +9,14 @@ up and running:
 - api
 - api integration
 - command: new user
-- job: add comment Tak to random post
-
-todo:
-- command: command count crud actions <s>add timer</s> fix timer.
-- change random values in add comment job
-- fix api ports (8000 + 8001)
+- <strong>job: add comment Tak to random post</strong>
+- <strong>command: command count crud actions</strong>
 
 commands:
 - newUser
-- crudActions (without timer)
+- crudActions
+
+todo:
+- change random values in add comment job
+- fix api ports (8000 + 8001)
+
