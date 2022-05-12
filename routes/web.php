@@ -3,7 +3,9 @@
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\ThanksController;
 use App\Http\Controllers\UserController;
+
 
 
 use Illuminate\Support\Facades\Route;
@@ -49,7 +51,7 @@ Route::post('/api/deletecomment', [ApiController::class, 'deleteComment'])->name
 Route::get('/api/deletepost', [ApiController::class, 'deletePostIndex'])->name('api.deletepost')->middleware('auth');
 Route::post('/api/deletepost', [ApiController::class, 'deletePost'])->name('api.deletepost.rmv')->middleware('auth');
 
-
+Route::get('/finish', [ThanksController::class, 'index'])->name('finish.index')->middleware('auth');;
 
 
 Auth::routes();

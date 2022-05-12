@@ -18,5 +18,5 @@ commands:
 
 todo:
 - change random values in add comment job
-- fix api ports (8000 + 8001)
+- fix api ports (guzzle problem)
 
