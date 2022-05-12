@@ -3,7 +3,8 @@ RBR_Sebastian_D
 <hr />
 
 <strong>important</strong>
-api queries use port 9001 due to the problem of using guzzle and php artisan at the same time
+
+api queries use port 8001 due to the problem of using guzzle and php artisan at the same time
 
 up and running:
 - bootstrap auth
