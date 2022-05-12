@@ -3,14 +3,12 @@
 namespace App\Jobs;
 
 use App\Http\Controllers\ApiController;
-
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use App\Models\Post;
 use Illuminate\Support\Facades\Http;
 
 
@@ -35,7 +33,13 @@ class CreateRandomPost implements ShouldQueue
      */
     public function handle()
     {
-        Post::factory()->create();
+        $request = Http::asForm()->post('http://localhost:8001/api/v1/posts', [
+            'title' => 'Awesome Post #'.rand(1,1000),
+            'content' => 'Day ' . rand(1,1000) . '. This is no a quality content ',
+            'author' => rand(1,25)
+        ]);
+
+        $request;
 
     }
 }
