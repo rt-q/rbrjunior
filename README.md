@@ -8,12 +8,12 @@ up and running:
 - views
 - api
 - api integration
-- new user command
+- command: new user
+- job: add comment Tak to random post
 
 todo:
-- job [adding comment]
-- command [count crud actions with timer]
-
+- command: command count crud actions <strong>add timer</strong>
+- change random values in add comment job
 
 commands:
 - newUser
