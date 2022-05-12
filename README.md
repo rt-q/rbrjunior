@@ -14,6 +14,7 @@ up and running:
 todo:
 - command: command count crud actions <strong>add timer</strong>
 - change random values in add comment job
+- fix api ports (8000 + 8001)
 
 commands:
 - newUser
